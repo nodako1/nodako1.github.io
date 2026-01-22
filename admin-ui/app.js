@@ -67,22 +67,34 @@
     return h;
   }
   async function apiGet(path){
-    const r = await fetch(cfg.adminApiBaseUrl + path, { headers: apiHeaders() });
-    if (r.status === 401 || r.status === 403) throw new Error('権限がありません（管理者権限が必要）');
-    if (!r.ok) throw new Error('APIエラー: '+ r.status);
-    return await r.json();
+    try {
+      const r = await fetch(cfg.adminApiBaseUrl + path, { headers: apiHeaders() });
+      if (r.status === 401 || r.status === 403) throw new Error('権限がありません（管理者権限が必要）');
+      if (!r.ok) throw new Error(`APIエラー: ${r.status}`);
+      return await r.json();
+    } catch (e){
+      throw new Error('ネットワークエラー（接続またはCORS設定を確認してください）');
+    }
   }
   async function apiPatch(path, body){
-    const r = await fetch(cfg.adminApiBaseUrl + path, { method:'PATCH', headers: apiHeaders(), body: JSON.stringify(body) });
-    if (r.status === 401 || r.status === 403) throw new Error('権限がありません（管理者権限が必要）');
-    if (!r.ok) throw new Error('APIエラー: '+ r.status);
-    return await r.json();
+    try {
+      const r = await fetch(cfg.adminApiBaseUrl + path, { method:'PATCH', headers: apiHeaders(), body: JSON.stringify(body) });
+      if (r.status === 401 || r.status === 403) throw new Error('権限がありません（管理者権限が必要）');
+      if (!r.ok) throw new Error(`APIエラー: ${r.status}`);
+      return await r.json();
+    } catch (e){
+      throw new Error('ネットワークエラー（接続またはCORS設定を確認してください）');
+    }
   }
   async function apiPost(path, body){
-    const r = await fetch(cfg.adminApiBaseUrl + path, { method:'POST', headers: apiHeaders(), body: JSON.stringify(body) });
-    if (r.status === 401 || r.status === 403) throw new Error('権限がありません（管理者権限が必要）');
-    if (!r.ok) throw new Error('APIエラー: '+ r.status);
-    return await r.json();
+    try {
+      const r = await fetch(cfg.adminApiBaseUrl + path, { method:'POST', headers: apiHeaders(), body: JSON.stringify(body) });
+      if (r.status === 401 || r.status === 403) throw new Error('権限がありません（管理者権限が必要）');
+      if (!r.ok) throw new Error(`APIエラー: ${r.status}`);
+      return await r.json();
+    } catch (e){
+      throw new Error('ネットワークエラー（接続またはCORS設定を確認してください）');
+    }
   }
 
   function navigateTo(hash){ location.hash = hash; }
