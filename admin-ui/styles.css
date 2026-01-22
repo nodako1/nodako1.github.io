@@ -9,8 +9,15 @@
 .btn-primary:hover{background:#1d4ed8}
 .hidden{display:none}
 .grid{display:grid;gap:12px}
-.grid.months{grid-template-columns:repeat(auto-fill,minmax(140px,1fr))}
-.grid.days{grid-template-columns:repeat(auto-fill,minmax(120px,1fr))}
+/* モバイル: ボタン/カードは横幅いっぱい */
+.grid.months{grid-template-columns:1fr}
+.grid.days{grid-template-columns:1fr}
+.card .btn.btn-primary{width:100%}
+/* PC: 2列で並べる */
+@media (min-width: 1024px){
+	.grid.months{grid-template-columns:repeat(2,1fr)}
+	.grid.days{grid-template-columns:repeat(2,1fr)}
+}
 .card{background:#fff;border:2px solid #93c5fd;border-radius:12px;padding:12px}
 .card.complete{border-color:#f87171}
 .card h3{margin:0 0 8px;font-size:16px}
