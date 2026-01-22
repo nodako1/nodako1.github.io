@@ -73,7 +73,11 @@
       if (!r.ok) throw new Error(`APIエラー: ${r.status}`);
       return await r.json();
     } catch (e){
-      if (e && e.message) throw e;
+      const msg = String(e?.message || e || '');
+      if (/Failed to fetch/i.test(msg)) {
+        throw new Error('接続に失敗しました（CORS設定またはネットワークを確認してください）');
+      }
+      if (msg) throw new Error(msg);
       throw new Error('ネットワークエラー（接続またはCORS設定を確認してください）');
     }
   }
@@ -84,7 +88,11 @@
       if (!r.ok) throw new Error(`APIエラー: ${r.status}`);
       return await r.json();
     } catch (e){
-      if (e && e.message) throw e;
+      const msg = String(e?.message || e || '');
+      if (/Failed to fetch/i.test(msg)) {
+        throw new Error('接続に失敗しました（CORS設定またはネットワークを確認してください）');
+      }
+      if (msg) throw new Error(msg);
       throw new Error('ネットワークエラー（接続またはCORS設定を確認してください）');
     }
   }
@@ -95,7 +103,11 @@
       if (!r.ok) throw new Error(`APIエラー: ${r.status}`);
       return await r.json();
     } catch (e){
-      if (e && e.message) throw e;
+      const msg = String(e?.message || e || '');
+      if (/Failed to fetch/i.test(msg)) {
+        throw new Error('接続に失敗しました（CORS設定またはネットワークを確認してください）');
+      }
+      if (msg) throw new Error(msg);
       throw new Error('ネットワークエラー（接続またはCORS設定を確認してください）');
     }
   }
