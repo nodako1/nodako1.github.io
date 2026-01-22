@@ -246,12 +246,10 @@
   }
 
   async function onAddDeckName(){
-    const name = (prompt('追加するデッキ名を入力してください（例: リザードンex）')||'').trim();
+    const name = (prompt('追加するデッキ名（カタカナ）を入力してください（例: リザードンエックス）')||'').trim();
     if (!name) return;
-    const yomi = (prompt('読み仮名（カタカナ）を入力してください（例: リザードンエックス）')||'').trim();
-    if (!yomi) return;
     try {
-      await apiPost('/admin/deck-names', { name, yomi });
+      await apiPost('/admin/deck-names', { name });
       alert('追加しました。プルダウンを再読み込みします。');
       route();
     } catch(e){ alert('追加に失敗: '+(e?.message||e)); }
