@@ -73,6 +73,7 @@
       if (!r.ok) throw new Error(`APIエラー: ${r.status}`);
       return await r.json();
     } catch (e){
+      if (e && e.message) throw e;
       throw new Error('ネットワークエラー（接続またはCORS設定を確認してください）');
     }
   }
@@ -83,6 +84,7 @@
       if (!r.ok) throw new Error(`APIエラー: ${r.status}`);
       return await r.json();
     } catch (e){
+      if (e && e.message) throw e;
       throw new Error('ネットワークエラー（接続またはCORS設定を確認してください）');
     }
   }
@@ -93,6 +95,7 @@
       if (!r.ok) throw new Error(`APIエラー: ${r.status}`);
       return await r.json();
     } catch (e){
+      if (e && e.message) throw e;
       throw new Error('ネットワークエラー（接続またはCORS設定を確認してください）');
     }
   }
