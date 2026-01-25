@@ -1,0 +1,25 @@
+# Exclude local artifacts and secrets from Docker build context
+node_modules
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+pnpm-debug.log*
+
+# Build outputs
+/dist
+/.turbo
+
+# VCS
+.git
+.gitignore
+
+# IDE/editor
+.vscode
+.idea
+.DS_Store
+
+# Env and local configs
+.env
+.env.*
+admin-run.log
+logs/

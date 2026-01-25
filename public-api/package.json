@@ -1,0 +1,20 @@
+{
+  "name": "pokedeck-public-api",
+  "version": "1.0.0",
+  "description": "PokeDeck 公開APIサービス (Cloud Run用)",
+  "main": "dist/public-server.js",
+  "type": "module",
+  "scripts": {
+  "build": "tsc -p tsconfig.json",
+  "start": "node dist/public-server.js"
+  },
+  "dependencies": {
+    "express": "4.21.2",
+    "firebase-admin": "13.6.0"
+  },
+  "devDependencies": {
+    "@types/express": "4.17.21",
+    "@types/node": "20.11.30",
+    "typescript": "5.6.3"
+  }
+}

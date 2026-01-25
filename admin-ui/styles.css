@@ -22,12 +22,25 @@
 .card.complete{border-color:#f87171}
 .card h3{margin:0 0 8px;font-size:16px}
 .toolbar{display:flex;gap:8px;align-items:center;margin:12px 0}
-.deck-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(260px,1fr));gap:12px}
+.toolbar.two-rows{display:grid;grid-template-columns:1fr;gap:8px}
+.toolbar .row-1,.toolbar .row-2{display:flex;gap:8px;align-items:center}
+.toolbar .grow{flex:1}
+/* モバイル: 2段配置で見やすく */
+@media (max-width: 767px){
+	.toolbar.two-rows .row-1{flex-wrap:wrap}
+	.toolbar.two-rows .row-2{flex-wrap:wrap}
+	.app-header,.app-footer{padding:12px}
+}
+.deck-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(320px,1fr));gap:12px}
 .deck-card{background:#fff;border:3px solid #60a5fa;border-radius:12px;overflow:hidden}
 .deck-card.complete{border-color:#ef4444}
-.deck-card img{width:100%;height:180px;object-fit:cover;background:#f3f4f6}
+.deck-card img{width:100%;height:240px;object-fit:cover;background:#f3f4f6}
+@media (min-width: 1024px){
+	.deck-card img{height:300px}
+}
 .deck-card .body{padding:8px}
-.select{width:100%;padding:8px;border-radius:8px;border:1px solid #d1d5db}
+.select{width:100%;padding:12px;border-radius:10px;border:1px solid #d1d5db;font-size:16px}
+.select-large{width:100%;padding:14px;border-radius:12px;border:1px solid #cbd5e1;font-size:17px}
 .row{display:flex;gap:8px;align-items:center}
 .row>.grow{flex:1}
 .notice{padding:8px 12px;border-radius:8px;background:#fff7ed;border:1px solid #fed7aa;color:#9a3412}

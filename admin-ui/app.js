@@ -220,14 +220,25 @@
   async function showEdit(params){
     const id = params.get('id');
     if (!id) { navigateTo('#/months'); return; }
-    view.innerHTML = `<div class=\"toolbar\"><button class=\"btn\" id=\"back\">← 戻る</button><h2>${id} の入力</h2><button class=\"btn\" id=\"reload\">再読込</button><span class=\"grow\"></span><button class=\"btn\" id=\"add-name\">＋候補追加</button></div><div id=\"decks\" class=\"deck-grid\"></div>`;
+    // ツールバーはスマホで2段構成（1行目: 戻る + 見出し、2行目: 決定 + ＋候補追加）。PCでは横並び表示。
+    view.innerHTML = `
+      <div class=\"toolbar two-rows\">
+        <div class=\"row-1\">
+          <button class=\"btn\" id=\"back\">← 戻る</button>
+          <h2 style=\"margin:0\">${id} の入力</h2>
+          <span class=\"grow\"></span>
+        </div>
+        <div class=\"row-2\">
+          <button class=\"btn btn-primary\" id=\"apply-all\">決定</button>
+          <button class=\"btn\" id=\"add-name\">＋候補追加</button>
+        </div>
+      </div>
+      <div id=\"decks\" class=\"deck-grid\"></div>`;
     // 戻る: 対象日から元の月を推測し、日一覧へ戻ります。
     el('#back').addEventListener('click', () => {
       const month = `${id.slice(0,4)}-${id.slice(4,6)}`;
       navigateTo(`#/days?month=${month}`);
     });
-    // 再読込: 同じ id で画面を描画し直します（最新候補を反映）。
-    el('#reload').addEventListener('click', () => showEdit(new URLSearchParams(`id=${encodeURIComponent(id)}`)));
     // 候補追加: 新しいデッキ名を登録するダイアログを開きます。
     el('#add-name').addEventListener('click', onAddDeckName);
 
@@ -238,6 +249,9 @@
     ]);
     state.decks = decks;
     state.deckNames = names;
+
+    // 選択状態（groupId -> deckName）を保持するマップ。未選択はキーなし。
+    const selection = new Map();
 
     // 各デッキごとにカードを生成。画像 + 候補プルダウン + 決定ボタンで構成します。
     const mount = el('#decks');
@@ -257,7 +271,7 @@
 
       // 候補プルダウンの生成。先頭に「未選択」を置き、続けて API 取得した候補を並べます。
       const sel = document.createElement('select');
-      sel.className = 'select grow';
+      sel.className = 'select select-large grow';
       const opt0 = document.createElement('option');
       opt0.value = '';
       opt0.textContent = '(未選択)';
@@ -270,25 +284,56 @@
         sel.appendChild(opt);
       });
 
-      // 「決定」ボタン: 選択中の候補で対象デッキを更新し、完了表示に切り替えます。
-      const applyBtn = document.createElement('button');
-      applyBtn.className = 'btn';
-      applyBtn.textContent = '決定';
-      applyBtn.addEventListener('click', async () => {
-        const deckName = sel.value.trim();
-        if (!deckName) { alert('デッキ名を選択してください'); return; }
-        try {
-          await apiPatch(`/admin/days/${encodeURIComponent(id)}/decks/${encodeURIComponent(d.groupId)}`, { deckName });
-          card.classList.add('complete');
-        } catch(e){ alert('更新に失敗: '+(e?.message||e)); }
+      // 初期選択を状態に反映
+      if (d.deckName && String(d.deckName).trim()) selection.set(String(d.groupId), String(d.deckName));
+      sel.addEventListener('change', () => {
+        const val = String(sel.value || '').trim();
+        const key = String(d.groupId);
+        if (val) selection.set(key, val); else selection.delete(key);
       });
 
       row.appendChild(sel);
-      row.appendChild(applyBtn);
       body.appendChild(row);
       card.appendChild(img);
       card.appendChild(body);
       mount.appendChild(card);
+    });
+
+    // 画面唯一の「決定」ボタン: 選択済みの項目をまとめてバッチ更新。
+    const $applyAll = el('#apply-all');
+    $applyAll.addEventListener('click', async () => {
+      const items = Array.from(selection.entries()).map(([groupId, deckName]) => ({ groupId, deckName }));
+      if (items.length === 0) { alert('デッキ名の選択がありません'); return; }
+      try {
+        $applyAll.disabled = true;
+        $applyAll.textContent = '送信中…';
+        const res = await apiPost(`/admin/days/${encodeURIComponent(id)}/decks:batchUpdate`, { items });
+        const updated = Number(res?.updatedCount || 0);
+        const errors = Array.isArray(res?.errors) ? res.errors : [];
+        // 反映済みカードを完了表示に
+        if (Array.isArray(res?.updatedIds)) {
+          const set = new Set(res.updatedIds.map(String));
+          // state.decks は groupId を持つ
+          document.querySelectorAll('.deck-card').forEach((cardEl, idx) => {
+            const deck = state.decks[idx];
+            if (deck && set.has(String(deck.groupId))) cardEl.classList.add('complete');
+          });
+        } else {
+          // updatedIds がない場合は選択項目すべてを完了扱い
+          const set = new Set(items.map(i => String(i.groupId)));
+          document.querySelectorAll('.deck-card').forEach((cardEl, idx) => {
+            const deck = state.decks[idx];
+            if (deck && set.has(String(deck.groupId))) cardEl.classList.add('complete');
+          });
+        }
+        const msg = [`更新: ${updated} 件`, errors.length ? `失敗: ${errors.length} 件` : ''];
+        alert(msg.filter(Boolean).join('\n'));
+      } catch (e){
+        alert('一括更新に失敗: ' + (e?.message || e));
+      } finally {
+        $applyAll.disabled = false;
+        $applyAll.textContent = '決定';
+      }
     });
   }
 
