@@ -1,0 +1,14 @@
+# Xcode user data
+*.xccheckout
+*.xcuserstate
+*.xcscmblueprint
+*.xcworkspace/xcuserdata/
+
+# Derived data
+DerivedData/
+
+# Swift Package Manager
+.build/
+
+# iOS caches
+*.DS_Store

@@ -1,0 +1,636 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 63;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		106AF4727994D889346797B6 /* Theme.swift in Sources */ = {isa = PBXBuildFile; fileRef = C4DE03B5DF9598CDA4CA4E85 /* Theme.swift */; };
+		12CA82EC8F0742A83814B153 /* ImageSaver.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5412020EB0A4ED6DBC98CF9B /* ImageSaver.swift */; };
+		24F28A678DD7020937DECF1F /* DaySummaryView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9440715BE293983063E2ABF1 /* DaySummaryView.swift */; };
+		30B4B4815E678A3DA0EF7C8C /* ImagePipelineConfig.swift in Sources */ = {isa = PBXBuildFile; fileRef = AE3A47C4CD23066C5F52DDA0 /* ImagePipelineConfig.swift */; };
+		3452CF908A28A6974C1C7FDF /* AppConfig.swift in Sources */ = {isa = PBXBuildFile; fileRef = A06E256AAE9DD6E8A0859BFC /* AppConfig.swift */; };
+		348446872DF8A826170D9010 /* NukeThumbnail.swift in Sources */ = {isa = PBXBuildFile; fileRef = C2C8A830E939E41467771C65 /* NukeThumbnail.swift */; };
+		40CCA09ABFB192C4602E162D /* Nuke in Frameworks */ = {isa = PBXBuildFile; productRef = 9ECDFA2FD559376E5C848470 /* Nuke */; };
+		4B3E6F8B1167DE60E5313823 /* YouTubeEmbedView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 810A58B93E73F03037993224 /* YouTubeEmbedView.swift */; };
+		5A7B8F3C1E2D4A0B9C8D7E6F /* RankFilterTabs.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7F2E6C1D4A9B8E0C3D5F7A2B /* RankFilterTabs.swift */; };
+		5BB3B899FBEE9F1AE2DF6D08 /* GoogleMobileAds in Frameworks */ = {isa = PBXBuildFile; productRef = CDE537213A40B5914F24757E /* GoogleMobileAds */; };
+		7AD7019C14ABBA2448246A51 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6A2718835E54A48A2609F237 /* ContentView.swift */; };
+		8A935B7EB7103EAF7DD5A56F /* WeekRangeUtilTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = BD31720B9DB2EDAD2814EF0D /* WeekRangeUtilTests.swift */; };
+		92341BC5E49D455138322F34 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = AFF668A6C511A8A7E86D8FFD /* Assets.xcassets */; };
+		936EE26D28F022CDDEDE5E52 /* NukeUI in Frameworks */ = {isa = PBXBuildFile; productRef = 5B145401CCA1F78D03D7B8E0 /* NukeUI */; };
+		9C38CC4AF257627D63D448CA /* EnvironmentVideosView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9CE29234B02C2D17E2BC1322 /* EnvironmentVideosView.swift */; };
+		A26D7C43A730003F685C4829 /* WeekRangeUtil.swift in Sources */ = {isa = PBXBuildFile; fileRef = 07A5606A22BBDDFD7AB2F579 /* WeekRangeUtil.swift */; };
+		A356582982446FDA3BD4BFD5 /* PreloadStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = 21349F4FD46B16278C5DD7EA /* PreloadStore.swift */; };
+		A38E1C3F18A9E11786AFBD7C /* Models.swift in Sources */ = {isa = PBXBuildFile; fileRef = C302ED814175A6DA3DD6AA2A /* Models.swift */; };
+		BF39C1C7F1B76D13BDFF6B7F /* BrandTitle.swift in Sources */ = {isa = PBXBuildFile; fileRef = B217C67121E83F1C58D9E903 /* BrandTitle.swift */; };
+		BF63CCDA3B76A7C1624B76DA /* PokeDeckSwiftApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 117D8788CE0B2710905749DE /* PokeDeckSwiftApp.swift */; };
+		C0852349BC3EE7B406670CE9 /* ApiClient.swift in Sources */ = {isa = PBXBuildFile; fileRef = EBEF7965D73B684D8CC498CC /* ApiClient.swift */; };
+		C6D2607E7275A732DF3AA47A /* Shimmer.swift in Sources */ = {isa = PBXBuildFile; fileRef = AFEDB0F6F69507ABA814C8EA /* Shimmer.swift */; };
+		CD8496BB2D30257B9F776E33 /* DeckDistributionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF93AAB9A44AE94A538087F1 /* DeckDistributionView.swift */; };
+		D21ED4C1C01DC5BE7A28A874 /* RankingRow.swift in Sources */ = {isa = PBXBuildFile; fileRef = EB61AA96EC76545F1C2A790C /* RankingRow.swift */; };
+		D466B03BC841901EBEC7B93A /* DateUtil.swift in Sources */ = {isa = PBXBuildFile; fileRef = E9ED494A68730930B8F3B00D /* DateUtil.swift */; };
+		D6029F0B7DD028F7B6E9ED22 /* ReferenceBuildsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA5C77FB57E93FBBC23A61A4 /* ReferenceBuildsView.swift */; };
+		DA27B4E3A70B036AE3C9137A /* DeckDistributionPreloadStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4B47A2EA0FE7B761581B7F2D /* DeckDistributionPreloadStore.swift */; };
+		DE1126BF2207D8549A4914B8 /* DailySnapshotStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0EFBFE0D31CD228B714D77F8 /* DailySnapshotStore.swift */; };
+		E1F2A3B4C5D6E7F8091A2B3C /* PreloadCacheActor.swift in Sources */ = {isa = PBXBuildFile; fileRef = F0A1B2C3D4E5F60718293A4B5 /* PreloadCacheActor.swift */; };
+		ED264383E23FC1585DF81FF1 /* ReferenceBuildsDetailView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CA33055E65C240805431F39E /* ReferenceBuildsDetailView.swift */; };
+		FCBBF0FD958EDE7ACEAE75CA /* DeckNameAggregationStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5CF28B486DFFC1E431C328E /* DeckNameAggregationStore.swift */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXContainerItemProxy section */
+		DE9EB239A543C01E28DD9DD0 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = CE1A9241D881DE6C39F5483B /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 9B116E5DC757AD865F6D4F54;
+			remoteInfo = PokeDeckSwift;
+		};
+/* End PBXContainerItemProxy section */
+
+/* Begin PBXFileReference section */
+		07A5606A22BBDDFD7AB2F579 /* WeekRangeUtil.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WeekRangeUtil.swift; sourceTree = "<group>"; };
+		0EFBFE0D31CD228B714D77F8 /* DailySnapshotStore.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DailySnapshotStore.swift; sourceTree = "<group>"; };
+		117D8788CE0B2710905749DE /* PokeDeckSwiftApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PokeDeckSwiftApp.swift; sourceTree = "<group>"; };
+		19CBDB126FB7302EA61ED49E /* PokeDeckSwift.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = PokeDeckSwift.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		21349F4FD46B16278C5DD7EA /* PreloadStore.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PreloadStore.swift; sourceTree = "<group>"; };
+		4B47A2EA0FE7B761581B7F2D /* DeckDistributionPreloadStore.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DeckDistributionPreloadStore.swift; sourceTree = "<group>"; };
+		5412020EB0A4ED6DBC98CF9B /* ImageSaver.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageSaver.swift; sourceTree = "<group>"; };
+		6A2718835E54A48A2609F237 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
+		7F2E6C1D4A9B8E0C3D5F7A2B /* RankFilterTabs.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RankFilterTabs.swift; sourceTree = "<group>"; };
+		810A58B93E73F03037993224 /* YouTubeEmbedView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = YouTubeEmbedView.swift; sourceTree = "<group>"; };
+		9440715BE293983063E2ABF1 /* DaySummaryView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DaySummaryView.swift; sourceTree = "<group>"; };
+		9CE29234B02C2D17E2BC1322 /* EnvironmentVideosView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EnvironmentVideosView.swift; sourceTree = "<group>"; };
+		A06E256AAE9DD6E8A0859BFC /* AppConfig.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppConfig.swift; sourceTree = "<group>"; };
+		A5CF28B486DFFC1E431C328E /* DeckNameAggregationStore.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DeckNameAggregationStore.swift; sourceTree = "<group>"; };
+		AE3A47C4CD23066C5F52DDA0 /* ImagePipelineConfig.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImagePipelineConfig.swift; sourceTree = "<group>"; };
+		AFEDB0F6F69507ABA814C8EA /* Shimmer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Shimmer.swift; sourceTree = "<group>"; };
+		AFF668A6C511A8A7E86D8FFD /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
+		B217C67121E83F1C58D9E903 /* BrandTitle.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BrandTitle.swift; sourceTree = "<group>"; };
+		BD31720B9DB2EDAD2814EF0D /* WeekRangeUtilTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WeekRangeUtilTests.swift; sourceTree = "<group>"; };
+		C2C8A830E939E41467771C65 /* NukeThumbnail.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NukeThumbnail.swift; sourceTree = "<group>"; };
+		C302ED814175A6DA3DD6AA2A /* Models.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Models.swift; sourceTree = "<group>"; };
+		C4DE03B5DF9598CDA4CA4E85 /* Theme.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Theme.swift; sourceTree = "<group>"; };
+		C54D02F7E42D255EACD3986A /* PokeDeckSwiftTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = PokeDeckSwiftTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		CA33055E65C240805431F39E /* ReferenceBuildsDetailView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReferenceBuildsDetailView.swift; sourceTree = "<group>"; };
+		CF93AAB9A44AE94A538087F1 /* DeckDistributionView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DeckDistributionView.swift; sourceTree = "<group>"; };
+		E9ED494A68730930B8F3B00D /* DateUtil.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DateUtil.swift; sourceTree = "<group>"; };
+		EB61AA96EC76545F1C2A790C /* RankingRow.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RankingRow.swift; sourceTree = "<group>"; };
+		EBEF7965D73B684D8CC498CC /* ApiClient.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ApiClient.swift; sourceTree = "<group>"; };
+		F0A1B2C3D4E5F60718293A4B5 /* PreloadCacheActor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PreloadCacheActor.swift; sourceTree = "<group>"; };
+		FA5C77FB57E93FBBC23A61A4 /* ReferenceBuildsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReferenceBuildsView.swift; sourceTree = "<group>"; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		164CF6D430A323B0015B7C1C /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				40CCA09ABFB192C4602E162D /* Nuke in Frameworks */,
+				936EE26D28F022CDDEDE5E52 /* NukeUI in Frameworks */,
+				5BB3B899FBEE9F1AE2DF6D08 /* GoogleMobileAds in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		00FB9E4C37BCBC8A72E188D3 /* Services */ = {
+			isa = PBXGroup;
+			children = (
+				EBEF7965D73B684D8CC498CC /* ApiClient.swift */,
+				A06E256AAE9DD6E8A0859BFC /* AppConfig.swift */,
+				0EFBFE0D31CD228B714D77F8 /* DailySnapshotStore.swift */,
+				E9ED494A68730930B8F3B00D /* DateUtil.swift */,
+				4B47A2EA0FE7B761581B7F2D /* DeckDistributionPreloadStore.swift */,
+				A5CF28B486DFFC1E431C328E /* DeckNameAggregationStore.swift */,
+				AE3A47C4CD23066C5F52DDA0 /* ImagePipelineConfig.swift */,
+				5412020EB0A4ED6DBC98CF9B /* ImageSaver.swift */,
+				21349F4FD46B16278C5DD7EA /* PreloadStore.swift */,
+				F0A1B2C3D4E5F60718293A4B5 /* PreloadCacheActor.swift */,
+				07A5606A22BBDDFD7AB2F579 /* WeekRangeUtil.swift */,
+			);
+			path = Services;
+			sourceTree = "<group>";
+		};
+		2AB5A2B16217B236F8D6E4BA /* Tests */ = {
+			isa = PBXGroup;
+			children = (
+				BD31720B9DB2EDAD2814EF0D /* WeekRangeUtilTests.swift */,
+			);
+			path = Tests;
+			sourceTree = "<group>";
+		};
+		5E30029EAC67916DCF9FE7C6 = {
+			isa = PBXGroup;
+			children = (
+				9B5FA62C305B3C3060C43BA9 /* ios */,
+				994F85E1255E8C8FC6AE1789 /* Models */,
+				00FB9E4C37BCBC8A72E188D3 /* Services */,
+				2AB5A2B16217B236F8D6E4BA /* Tests */,
+				F498CC5B68BB47D370AE4183 /* Views */,
+				C6FE545D71D4765B0611199D /* Products */,
+			);
+			sourceTree = "<group>";
+		};
+		994F85E1255E8C8FC6AE1789 /* Models */ = {
+			isa = PBXGroup;
+			children = (
+				C302ED814175A6DA3DD6AA2A /* Models.swift */,
+			);
+			path = Models;
+			sourceTree = "<group>";
+		};
+		9B5FA62C305B3C3060C43BA9 /* ios */ = {
+			isa = PBXGroup;
+			children = (
+				AFF668A6C511A8A7E86D8FFD /* Assets.xcassets */,
+				117D8788CE0B2710905749DE /* PokeDeckSwiftApp.swift */,
+			);
+			name = ios;
+			path = .;
+			sourceTree = "<group>";
+		};
+		A98FEE82A51403577ABB7712 /* Components */ = {
+			isa = PBXGroup;
+			children = (
+				B217C67121E83F1C58D9E903 /* BrandTitle.swift */,
+				C2C8A830E939E41467771C65 /* NukeThumbnail.swift */,
+				EB61AA96EC76545F1C2A790C /* RankingRow.swift */,
+				AFEDB0F6F69507ABA814C8EA /* Shimmer.swift */,
+				C4DE03B5DF9598CDA4CA4E85 /* Theme.swift */,
+				810A58B93E73F03037993224 /* YouTubeEmbedView.swift */,
+				7F2E6C1D4A9B8E0C3D5F7A2B /* RankFilterTabs.swift */,
+			);
+			path = Components;
+			sourceTree = "<group>";
+		};
+		C6FE545D71D4765B0611199D /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				19CBDB126FB7302EA61ED49E /* PokeDeckSwift.app */,
+				C54D02F7E42D255EACD3986A /* PokeDeckSwiftTests.xctest */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		F498CC5B68BB47D370AE4183 /* Views */ = {
+			isa = PBXGroup;
+			children = (
+				6A2718835E54A48A2609F237 /* ContentView.swift */,
+				9440715BE293983063E2ABF1 /* DaySummaryView.swift */,
+				CF93AAB9A44AE94A538087F1 /* DeckDistributionView.swift */,
+				9CE29234B02C2D17E2BC1322 /* EnvironmentVideosView.swift */,
+				CA33055E65C240805431F39E /* ReferenceBuildsDetailView.swift */,
+				FA5C77FB57E93FBBC23A61A4 /* ReferenceBuildsView.swift */,
+				A98FEE82A51403577ABB7712 /* Components */,
+			);
+			path = Views;
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		9B116E5DC757AD865F6D4F54 /* PokeDeckSwift */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 4A965B6193BA9BFC418437B7 /* Build configuration list for PBXNativeTarget "PokeDeckSwift" */;
+			buildPhases = (
+				CFF3229B6527986F122E2677 /* Sources */,
+				925AB124E52E2BBF8639D71F /* Resources */,
+				164CF6D430A323B0015B7C1C /* Frameworks */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = PokeDeckSwift;
+			packageProductDependencies = (
+				9ECDFA2FD559376E5C848470 /* Nuke */,
+				5B145401CCA1F78D03D7B8E0 /* NukeUI */,
+				CDE537213A40B5914F24757E /* GoogleMobileAds */,
+			);
+			productName = PokeDeckSwift;
+			productReference = 19CBDB126FB7302EA61ED49E /* PokeDeckSwift.app */;
+			productType = "com.apple.product-type.application";
+		};
+		BF59F49CC0734C115954838A /* PokeDeckSwiftTests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 5EE32D89A8C0E0D083FC9B17 /* Build configuration list for PBXNativeTarget "PokeDeckSwiftTests" */;
+			buildPhases = (
+				FD857F3D8A753EB302800646 /* Sources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				EBF6A270E51106A0714EEC7B /* PBXTargetDependency */,
+			);
+			name = PokeDeckSwiftTests;
+			packageProductDependencies = (
+			);
+			productName = PokeDeckSwiftTests;
+			productReference = C54D02F7E42D255EACD3986A /* PokeDeckSwiftTests.xctest */;
+			productType = "com.apple.product-type.bundle.unit-test";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		CE1A9241D881DE6C39F5483B /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				BuildIndependentTargetsInParallel = YES;
+				LastUpgradeCheck = 2610;
+				TargetAttributes = {
+					9B116E5DC757AD865F6D4F54 = {
+						ProvisioningStyle = Automatic;
+					};
+					BF59F49CC0734C115954838A = {
+						DevelopmentTeam = "";
+						ProvisioningStyle = Automatic;
+					};
+				};
+			};
+			buildConfigurationList = 14F0B23A28EF4FC55813C1BC /* Build configuration list for PBXProject "PokeDeckSwift" */;
+			compatibilityVersion = "Xcode 14.0";
+			developmentRegion = en;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				Base,
+				en,
+			);
+			mainGroup = 5E30029EAC67916DCF9FE7C6;
+			minimizedProjectReferenceProxies = 1;
+			packageReferences = (
+				696E2C5529A75DDBB7222569 /* XCRemoteSwiftPackageReference "swift-package-manager-google-mobile-ads" */,
+				D371111ECC4C8FD28CE36006 /* XCRemoteSwiftPackageReference "Nuke" */,
+				5D5430B5EC5669EB8F662AC9 /* XCRemoteSwiftPackageReference "NukeUI" */,
+			);
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				9B116E5DC757AD865F6D4F54 /* PokeDeckSwift */,
+				BF59F49CC0734C115954838A /* PokeDeckSwiftTests */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXResourcesBuildPhase section */
+		925AB124E52E2BBF8639D71F /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				92341BC5E49D455138322F34 /* Assets.xcassets in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		CFF3229B6527986F122E2677 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				C0852349BC3EE7B406670CE9 /* ApiClient.swift in Sources */,
+				3452CF908A28A6974C1C7FDF /* AppConfig.swift in Sources */,
+				BF39C1C7F1B76D13BDFF6B7F /* BrandTitle.swift in Sources */,
+				7AD7019C14ABBA2448246A51 /* ContentView.swift in Sources */,
+				DE1126BF2207D8549A4914B8 /* DailySnapshotStore.swift in Sources */,
+				D466B03BC841901EBEC7B93A /* DateUtil.swift in Sources */,
+				24F28A678DD7020937DECF1F /* DaySummaryView.swift in Sources */,
+				DA27B4E3A70B036AE3C9137A /* DeckDistributionPreloadStore.swift in Sources */,
+				CD8496BB2D30257B9F776E33 /* DeckDistributionView.swift in Sources */,
+				FCBBF0FD958EDE7ACEAE75CA /* DeckNameAggregationStore.swift in Sources */,
+				9C38CC4AF257627D63D448CA /* EnvironmentVideosView.swift in Sources */,
+				30B4B4815E678A3DA0EF7C8C /* ImagePipelineConfig.swift in Sources */,
+				12CA82EC8F0742A83814B153 /* ImageSaver.swift in Sources */,
+				A38E1C3F18A9E11786AFBD7C /* Models.swift in Sources */,
+				348446872DF8A826170D9010 /* NukeThumbnail.swift in Sources */,
+				BF63CCDA3B76A7C1624B76DA /* PokeDeckSwiftApp.swift in Sources */,
+				A356582982446FDA3BD4BFD5 /* PreloadStore.swift in Sources */,
+				D21ED4C1C01DC5BE7A28A874 /* RankingRow.swift in Sources */,
+				ED264383E23FC1585DF81FF1 /* ReferenceBuildsDetailView.swift in Sources */,
+				D6029F0B7DD028F7B6E9ED22 /* ReferenceBuildsView.swift in Sources */,
+				C6D2607E7275A732DF3AA47A /* Shimmer.swift in Sources */,
+				106AF4727994D889346797B6 /* Theme.swift in Sources */,
+				A26D7C43A730003F685C4829 /* WeekRangeUtil.swift in Sources */,
+				4B3E6F8B1167DE60E5313823 /* YouTubeEmbedView.swift in Sources */,
+				E1F2A3B4C5D6E7F8091A2B3C /* PreloadCacheActor.swift in Sources */,
+				5A7B8F3C1E2D4A0B9C8D7E6F /* RankFilterTabs.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		FD857F3D8A753EB302800646 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				8A935B7EB7103EAF7DD5A56F /* WeekRangeUtilTests.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin PBXTargetDependency section */
+		EBF6A270E51106A0714EEC7B /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 9B116E5DC757AD865F6D4F54 /* PokeDeckSwift */;
+			targetProxy = DE9EB239A543C01E28DD9DD0 /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
+
+/* Begin XCBuildConfiguration section */
+		0B8D8FBE4FECCC0295587A5D /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGNING_ALLOWED = YES;
+				"CODE_SIGNING_ALLOWED[sdk=iphonesimulator*]" = NO;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 3;
+				DEVELOPMENT_TEAM = BZDRYFWBT7;
+				GENERATE_INFOPLIST_FILE = NO;
+				INFOPLIST_FILE = Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
+				MARKETING_VERSION = 1.2;
+				PRODUCT_BUNDLE_IDENTIFIER = com.nodako.PokeDeckSwift;
+				SDKROOT = iphoneos;
+				SUPPORTS_MAC_DESIGNED_FOR_IPHONE = NO;
+				SWIFT_ACTIVE_COMPILATION_CONDITIONS = DEBUG;
+				SWIFT_VERSION = 6.0;
+				TARGETED_DEVICE_FAMILY = 1;
+				UIRequiresFullScreen = YES;
+			};
+			name = Debug;
+		};
+		11C413ED53FF438BF0DA921F /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_QUOTED_INCLUDE_IN_FRAMEWORK_HEADER = YES;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				ENABLE_NS_ASSERTIONS = NO;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_USER_SCRIPT_SANDBOXING = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 16.0;
+				MTL_ENABLE_DEBUG_INFO = NO;
+				MTL_FAST_MATH = YES;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SDKROOT = iphoneos;
+				STRING_CATALOG_GENERATE_SYMBOLS = YES;
+				SWIFT_COMPILATION_MODE = wholemodule;
+				SWIFT_OPTIMIZATION_LEVEL = "-O";
+				SWIFT_VERSION = 5.0;
+			};
+			name = Release;
+		};
+		322E6AFFE02256E632AFBC7F /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGNING_ALLOWED = YES;
+				"CODE_SIGNING_ALLOWED[sdk=iphonesimulator*]" = NO;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 3;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				DEVELOPMENT_TEAM = BZDRYFWBT7;
+				GENERATE_INFOPLIST_FILE = NO;
+				INFOPLIST_FILE = Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
+				MARKETING_VERSION = 1.2;
+				PRODUCT_BUNDLE_IDENTIFIER = com.nodako.PokeDeckSwift;
+				SDKROOT = iphoneos;
+				SUPPORTS_MAC_DESIGNED_FOR_IPHONE = NO;
+				SWIFT_ACTIVE_COMPILATION_CONDITIONS = "";
+				SWIFT_VERSION = 6.0;
+				TARGETED_DEVICE_FAMILY = 1;
+				UIRequiresFullScreen = YES;
+			};
+			name = Release;
+		};
+		84C8B4C2404A3B9DC96C563D /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_QUOTED_INCLUDE_IN_FRAMEWORK_HEADER = YES;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = dwarf;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_TESTABILITY = YES;
+				ENABLE_USER_SCRIPT_SANDBOXING = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"$(inherited)",
+					"DEBUG=1",
+				);
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 16.0;
+				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
+				MTL_FAST_MATH = YES;
+				ONLY_ACTIVE_ARCH = YES;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SDKROOT = iphoneos;
+				STRING_CATALOG_GENERATE_SYMBOLS = YES;
+				SWIFT_ACTIVE_COMPILATION_CONDITIONS = DEBUG;
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+				SWIFT_VERSION = 5.0;
+			};
+			name = Debug;
+		};
+		C473C1E78243B7F3F146A70B /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = "";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = com.nodako.PokeDeckSwiftTests;
+				SDKROOT = iphoneos;
+				SWIFT_VERSION = 6.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/PokeDeckSwift.app/PokeDeckSwift";
+			};
+			name = Release;
+		};
+		EA40C65EFD208442FD5721EB /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = "";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = com.nodako.PokeDeckSwiftTests;
+				SDKROOT = iphoneos;
+				SWIFT_VERSION = 6.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/PokeDeckSwift.app/PokeDeckSwift";
+			};
+			name = Debug;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		14F0B23A28EF4FC55813C1BC /* Build configuration list for PBXProject "PokeDeckSwift" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				84C8B4C2404A3B9DC96C563D /* Debug */,
+				11C413ED53FF438BF0DA921F /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Debug;
+		};
+		4A965B6193BA9BFC418437B7 /* Build configuration list for PBXNativeTarget "PokeDeckSwift" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				0B8D8FBE4FECCC0295587A5D /* Debug */,
+				322E6AFFE02256E632AFBC7F /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Debug;
+		};
+		5EE32D89A8C0E0D083FC9B17 /* Build configuration list for PBXNativeTarget "PokeDeckSwiftTests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				EA40C65EFD208442FD5721EB /* Debug */,
+				C473C1E78243B7F3F146A70B /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Debug;
+		};
+/* End XCConfigurationList section */
+
+/* Begin XCRemoteSwiftPackageReference section */
+		5D5430B5EC5669EB8F662AC9 /* XCRemoteSwiftPackageReference "NukeUI" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/kean/NukeUI.git";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 0.8.3;
+			};
+		};
+		696E2C5529A75DDBB7222569 /* XCRemoteSwiftPackageReference "swift-package-manager-google-mobile-ads" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/googleads/swift-package-manager-google-mobile-ads.git";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 11.0.0;
+			};
+		};
+		D371111ECC4C8FD28CE36006 /* XCRemoteSwiftPackageReference "Nuke" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/kean/Nuke.git";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 10.5.0;
+			};
+		};
+/* End XCRemoteSwiftPackageReference section */
+
+/* Begin XCSwiftPackageProductDependency section */
+		5B145401CCA1F78D03D7B8E0 /* NukeUI */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 5D5430B5EC5669EB8F662AC9 /* XCRemoteSwiftPackageReference "NukeUI" */;
+			productName = NukeUI;
+		};
+		9ECDFA2FD559376E5C848470 /* Nuke */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = D371111ECC4C8FD28CE36006 /* XCRemoteSwiftPackageReference "Nuke" */;
+			productName = Nuke;
+		};
+		CDE537213A40B5914F24757E /* GoogleMobileAds */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 696E2C5529A75DDBB7222569 /* XCRemoteSwiftPackageReference "swift-package-manager-google-mobile-ads" */;
+			productName = GoogleMobileAds;
+		};
+/* End XCSwiftPackageProductDependency section */
+	};
+	rootObject = CE1A9241D881DE6C39F5483B /* Project object */;
+}

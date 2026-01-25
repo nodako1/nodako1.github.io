@@ -1,0 +1,81 @@
+name: PokeDeckSwift
+options:
+  minimumXcodeGenVersion: 2.37.0
+  deploymentTarget:
+    iOS: "16.0"
+  # Debug/Release の2構成を明示
+  configs:
+    Debug: debug
+    Release: release
+packages:
+  Nuke:
+    url: https://github.com/kean/Nuke.git
+    from: 10.5.0
+  NukeUI:
+    url: https://github.com/kean/NukeUI.git
+    from: 0.8.3
+  GoogleMobileAds:
+    url: https://github.com/googleads/swift-package-manager-google-mobile-ads.git
+    from: 11.0.0
+targets:
+  PokeDeckSwift:
+    type: application
+    platform: iOS
+    sources:
+      - path: .
+        excludes:
+          - README.md
+          - README-CLEANUP.md
+          - .gitignore
+          - project.yml
+          - PokeDeckSwift.xcodeproj
+          - Info.plist
+          - Tests
+      - path: Views/Components/BrandTitle.swift
+    resources:
+      - Assets.xcassets
+    dependencies:
+      - package: Nuke
+      - package: NukeUI
+      - package: GoogleMobileAds
+    settings:
+      base:
+        PRODUCT_BUNDLE_IDENTIFIER: com.nodako.PokeDeckSwift
+        INFOPLIST_FILE: Info.plist
+        GENERATE_INFOPLIST_FILE: NO
+        SWIFT_VERSION: 6.0
+        CODE_SIGN_STYLE: Automatic
+        CODE_SIGNING_ALLOWED: YES
+        CODE_SIGNING_ALLOWED[sdk=iphonesimulator*]: NO
+        TARGETED_DEVICE_FAMILY: 1
+        SUPPORTS_MAC_DESIGNED_FOR_IPHONE: NO
+        ASSETCATALOG_COMPILER_APPICON_NAME: AppIcon
+        DEVELOPMENT_TEAM: ""
+        UIRequiresFullScreen: YES
+      configs:
+        Debug:
+          SWIFT_ACTIVE_COMPILATION_CONDITIONS: DEBUG
+        Release:
+          SWIFT_ACTIVE_COMPILATION_CONDITIONS: ""
+          DEBUG_INFORMATION_FORMAT: dwarf-with-dsym
+    scheme:
+      testTargets: []
+      gatherCoverageData: false
+      archive:
+        config: Release
+  PokeDeckSwiftTests:
+    type: bundle.unit-test
+    platform: iOS
+    sources:
+      - path: Tests
+    dependencies:
+      - target: PokeDeckSwift
+    settings:
+      base:
+        PRODUCT_BUNDLE_IDENTIFIER: com.nodako.PokeDeckSwiftTests
+        SWIFT_VERSION: 6.0
+        DEVELOPMENT_TEAM: ""
+        CODE_SIGN_STYLE: Automatic
+    scheme:
+      testTargets:
+        - PokeDeckSwiftTests
