@@ -1,6 +1,17 @@
 (function(){
+  /*
+   * 管理画面のメインスクリプト。
+   * - 役割: 認証、ハッシュベースのルーティング、画面（「月一覧」「日一覧」「デッキ名入力」）の描画、Admin API との通信。
+   * - 利用箇所: admin-ui の単一ページで読み込まれ、画面全体の振る舞いを制御します。
+   */
+
+  // 短いセレクタ関数。画面各所で要素取得に使用するヘルパー。
   const el = (sel) => document.querySelector(sel);
+
+  // メイン描画領域。全ての画面（months/days/edit）で内容を差し替えます。
   const view = el('#view');
+
+  // アプリ全体の共有状態。認証情報や直近取得データを保持し、各画面で参照します。
   const state = {
     user: null,
     idToken: null,
@@ -9,35 +20,41 @@
     decks: [],
     deckNames: []
   };
+
+  // 外部設定（Firebase 設定と Admin API のベース URL）。index.html から注入されます。
   const cfg = window.CONFIG || {};
   if (!cfg.firebase || !cfg.adminApiBaseUrl) {
+    // 設定不足時は以降の処理が行えないため、ユーザーに案内を表示します。
     renderError('設定が不足しています。admin-ui/config.sample.js を参考に config.js を作成してください。');
     return;
   }
 
-  // Firebase 初期化
+  // Firebase 認証の初期化。以降の認証（ログイン/ログアウトとトークン取得）で利用します。
   firebase.initializeApp(cfg.firebase);
   const auth = firebase.auth();
 
-  // UI: サインイン/アウト
+  // サインイン/サインアウト関連の UI 要素。クリックイベントは下記で定義します。
   const $btnSignin = el('#btn-signin');
   const $btnSignout = el('#btn-signout');
   const $userInfo = el('#user-info');
   const $userEmail = el('#user-email');
 
+  // 「ログイン」ボタン: Google アカウントで認証 → トークン更新 → 初期画面（months）へ遷移。
   $btnSignin.addEventListener('click', async () => {
     try {
       const provider = new firebase.auth.GoogleAuthProvider();
       const cred = await auth.signInWithPopup(provider);
-      // トークン更新と遷移
       await refreshToken();
       navigateTo('#/months');
     } catch(e){ alert('ログインに失敗しました: '+ (e?.message||e)); }
   });
+
+  // 「ログアウト」ボタン: 認証状態をクリアし、未ログイン画面の表示へ。
   $btnSignout.addEventListener('click', async () => {
     await auth.signOut();
   });
 
+  // 認証状態の変化ハンドラ。アプリ起動時/ログイン/ログアウト時に呼ばれ、UI 切り替えと初期ルート処理を担当します。
   auth.onAuthStateChanged(async (user) => {
     state.user = user;
     if (user) {
@@ -45,7 +62,7 @@
       $userInfo.classList.remove('hidden');
       $userEmail.textContent = user.email || '';
       await refreshToken();
-      // 最初の画面へ
+      // 初回は「月一覧」に誘導。ハッシュが指定済みならルーティングを実行。
       if (location.hash === '' || location.hash === '#/' ) navigateTo('#/months');
       else route();
     } else {
@@ -56,16 +73,20 @@
     }
   });
 
+  // ID トークンを取得/更新する関数。API 呼び出しの直前や認証直後に使用します。
   async function refreshToken(){
     if (!state.user) return;
-    state.idToken = await state.user.getIdToken(/* forceRefresh */ true);
+    state.idToken = await state.user.getIdToken(true);
   }
 
+  // API 通信で利用する共通ヘッダを生成。ログイン済みなら Bearer トークンを付与します。
   function apiHeaders(){
     const h = { 'Content-Type':'application/json' };
     if (state.idToken) h['Authorization'] = 'Bearer '+state.idToken;
     return h;
   }
+
+  // GET リクエストのヘルパー。画面データの取得（months/days/decks/names）で使用します。
   async function apiGet(path){
     try {
       const r = await fetch(cfg.adminApiBaseUrl + path, { headers: apiHeaders() });
@@ -81,6 +102,8 @@
       throw new Error('ネットワークエラー（接続またはCORS設定を確認してください）');
     }
   }
+
+  // PATCH リクエストのヘルパー。デッキ名の確定（更新）で使用します。
   async function apiPatch(path, body){
     try {
       const r = await fetch(cfg.adminApiBaseUrl + path, { method:'PATCH', headers: apiHeaders(), body: JSON.stringify(body) });
@@ -96,6 +119,8 @@
       throw new Error('ネットワークエラー（接続またはCORS設定を確認してください）');
     }
   }
+
+  // POST リクエストのヘルパー。デッキ名候補の追加で使用します。
   async function apiPost(path, body){
     try {
       const r = await fetch(cfg.adminApiBaseUrl + path, { method:'POST', headers: apiHeaders(), body: JSON.stringify(body) });
@@ -112,9 +137,13 @@
     }
   }
 
+  // ハッシュを更新して擬似遷移を行うヘルパー。各ボタンのクリックで使用します。
   function navigateTo(hash){ location.hash = hash; }
+
+  // ハッシュが変化したら現在の画面を再描画します。
   window.addEventListener('hashchange', route);
 
+  // シンプルなルーター。現在のハッシュに応じて該当画面関数を呼び出します。
   async function route(){
     if (!state.user) { renderSignedOut(); return; }
     const [_, path, query] = location.hash.match(/^#\/(\w+)?\??(.*)$/) || [];
@@ -128,12 +157,15 @@
     } catch(e){ renderError(e?.message||String(e)); }
   }
 
+  // 未ログイン時の案内を表示するだけの描画関数。認証前のデフォルト画面で使用します。
   function renderSignedOut(){
     view.innerHTML = '<div class="notice">管理者は「ログイン」ボタンからサインインしてください。</div>';
   }
+
+  // エラーメッセージを画面上部に表示。API 失敗や入力不備の表示で使用します。
   function renderError(msg){ view.innerHTML = `<div class="error">${msg}</div>`; }
 
-  // 画面: 月一覧
+  // 画面: 月一覧。API から月データを取得し、月カードを並べます。カードから「日一覧」へ遷移します。
   async function showMonths(){
     view.innerHTML = '<h2>月を選択</h2><div id="months" class="grid months"></div>';
     const mount = el('#months');
@@ -145,6 +177,7 @@
       const btn = document.createElement('button');
       btn.className = 'btn btn-primary';
       btn.textContent = m.id.replace('-', '年') + '月';
+      // カードのボタン: 該当月の「日一覧」へ。
       btn.addEventListener('click', () => navigateTo(`#/days?month=${encodeURIComponent(m.id)}`));
       const h3 = document.createElement('h3');
       h3.textContent = `${m.id} / 完了 ${m.completedDays ?? 0} / ${m.totalDays ?? 0}`;
@@ -154,11 +187,12 @@
     });
   }
 
-  // 画面: 日一覧（open）
+  // 画面: 日一覧（リーグ: open 固定）。選択した月の各日を表示し、各日から「デッキ名入力」へ遷移します。
   async function showDays(params){
     const month = params.get('month');
     if (!month) { navigateTo('#/months'); return; }
-    view.innerHTML = `<div class="toolbar"><button class="btn" id="back">← 戻る</button><h2>${month} の日付</h2></div><div id="days" class="grid days"></div>`;
+    view.innerHTML = `<div class="toolbar"><button class=\"btn\" id=\"back\">← 戻る</button><h2>${month} の日付</h2></div><div id=\"days\" class=\"grid days\"></div>`;
+    // 戻る: 月一覧へ戻ります。
     el('#back').addEventListener('click', () => navigateTo('#/months'));
     const mount = el('#days');
     const days = await apiGet(`/admin/days?month=${encodeURIComponent(month)}&league=open`);
@@ -170,6 +204,7 @@
       const btn = document.createElement('button');
       btn.className = 'btn btn-primary';
       btn.textContent = label;
+      // カードのボタン: 対象日の「デッキ名入力」画面へ。
       btn.addEventListener('click', () => navigateTo(`#/edit?id=${encodeURIComponent(d.id)}`));
       const h3 = document.createElement('h3');
       h3.textContent = `${d.id} / 完了 ${d.completedTargets ?? 0} / ${d.totalTargets ?? 0}`;
@@ -179,18 +214,24 @@
     });
   }
 
-  // 画面: デッキ名入力
+  // 画面: デッキ名入力。対象日のデッキ画像一覧と、デッキ名候補のプルダウンを表示します。
+  // - 決定ボタン: 選択したデッキ名で対象デッキを PATCH 更新。
+  // - ＋候補追加: 新しい候補名を POST で登録し、画面を再読み込み。
   async function showEdit(params){
     const id = params.get('id');
     if (!id) { navigateTo('#/months'); return; }
-    view.innerHTML = `<div class="toolbar"><button class="btn" id="back">← 戻る</button><h2>${id} の入力</h2><button class="btn" id="reload">再読込</button><span class="grow"></span><button class="btn" id="add-name">＋候補追加</button></div><div id="decks" class="deck-grid"></div>`;
+    view.innerHTML = `<div class=\"toolbar\"><button class=\"btn\" id=\"back\">← 戻る</button><h2>${id} の入力</h2><button class=\"btn\" id=\"reload\">再読込</button><span class=\"grow\"></span><button class=\"btn\" id=\"add-name\">＋候補追加</button></div><div id=\"decks\" class=\"deck-grid\"></div>`;
+    // 戻る: 対象日から元の月を推測し、日一覧へ戻ります。
     el('#back').addEventListener('click', () => {
       const month = `${id.slice(0,4)}-${id.slice(4,6)}`;
       navigateTo(`#/days?month=${month}`);
     });
+    // 再読込: 同じ id で画面を描画し直します（最新候補を反映）。
     el('#reload').addEventListener('click', () => showEdit(new URLSearchParams(`id=${encodeURIComponent(id)}`)));
+    // 候補追加: 新しいデッキ名を登録するダイアログを開きます。
     el('#add-name').addEventListener('click', onAddDeckName);
 
+    // 初期データ: 対象日のデッキ一覧と、デッキ名候補一覧を同時取得します。
     const [decks, names] = await Promise.all([
       apiGet(`/admin/days/${encodeURIComponent(id)}/decks`),
       apiGet('/admin/deck-names')
@@ -198,26 +239,29 @@
     state.decks = decks;
     state.deckNames = names;
 
+    // 各デッキごとにカードを生成。画像 + 候補プルダウン + 決定ボタンで構成します。
     const mount = el('#decks');
     decks.forEach(d => {
       const card = document.createElement('div');
       const isComplete = !!(d.deckName && String(d.deckName).trim());
       card.className = 'deck-card' + (isComplete ? ' complete' : '');
+
       const img = document.createElement('img');
       img.src = d.deckListImageUrl || '';
       img.alt = `rank ${d.rank}`;
+
       const body = document.createElement('div');
       body.className = 'body';
       const row = document.createElement('div');
       row.className = 'row';
+
+      // 候補プルダウンの生成。先頭に「未選択」を置き、続けて API 取得した候補を並べます。
       const sel = document.createElement('select');
       sel.className = 'select grow';
-      // 空行
       const opt0 = document.createElement('option');
       opt0.value = '';
       opt0.textContent = '(未選択)';
       sel.appendChild(opt0);
-      // 候補
       names.forEach(n => {
         const opt = document.createElement('option');
         opt.value = n.name;
@@ -225,6 +269,8 @@
         if (d.deckName && n.name === d.deckName) opt.selected = true;
         sel.appendChild(opt);
       });
+
+      // 「決定」ボタン: 選択中の候補で対象デッキを更新し、完了表示に切り替えます。
       const applyBtn = document.createElement('button');
       applyBtn.className = 'btn';
       applyBtn.textContent = '決定';
@@ -236,6 +282,7 @@
           card.classList.add('complete');
         } catch(e){ alert('更新に失敗: '+(e?.message||e)); }
       });
+
       row.appendChild(sel);
       row.appendChild(applyBtn);
       body.appendChild(row);
@@ -245,6 +292,7 @@
     });
   }
 
+  // デッキ名候補を新規追加する処理。ダイアログ入力 → API へ POST → 画面を再描画します。
   async function onAddDeckName(){
     const name = (prompt('追加するデッキ名（カタカナ）を入力してください（例: リザードンエックス）')||'').trim();
     if (!name) return;
@@ -255,6 +303,6 @@
     } catch(e){ alert('追加に失敗: '+(e?.message||e)); }
   }
 
-  // 初期表示
+  // 初期表示の分岐。既にログイン済みならルーティングを開始、未ログインなら案内を表示します。
   if (auth.currentUser) { refreshToken().then(route); } else { renderSignedOut(); }
 })();
